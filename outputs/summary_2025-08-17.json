@@ -1,0 +1,92 @@
+[
+  {
+  "logical_id": "01100101.20250817120250001",
+  "title": "현대차·기아, 올해 상반기 사우디 베스트셀러 1·2위 배출…“시장 다변화 탄력”",
+  "outlet_name": "경향신문",
+  "reporter": "권재현",
+  "category": "경제",
+  "trust_score": 89,
+  "published_at": "2025-08-17",
+  "url" : "https://www.khan.co.kr/article/202508171201001",
+  "summaries": [
+      "파트 1: 현대차·기아는 사우디아라비아에서 판매 톱2 차량을 배출하며 선전하고 있으며 합작 생산법인을 기반으로 현지 시장 공략을 강화할 계획이다.",
+      "파트 2: 현대차와 기아는 사우디 상반기 브랜드별 누적 판매 순위에서 나란히 2위와 3위를 기록했다.",
+      "파트 3: 현대차그룹은 현지에 현대차 생산법인도 구축한 터라 사우디에서의 선전은 더 이어질 것으로 전망된다.",
+      "파트 4: HMMME는 현대차가 30%, 사우디 국부펀드가 70%의 지분을 보유한 합작 생산법인으로 연간 5만대의 전기차 및 내연기관차 생산이 가능하다."
+    ],
+  "mux": {
+    "playback_id": "https://stream.mux.com/trr02Y88A02pVxR54pFEH101MommSVUxoVFIDUxQ8TMvxc.m3u8",
+    "playback_policy": "public",
+    "duration_seconds": 37
+  },
+  "quiz": {
+    "question": "올해 상반기 사우디에서 판매 톱2 차량을 낸 기업은?",
+    "options": [
+      "도요타·혼다",
+      "현대차·기아",
+      "테슬라·포드",
+      "BMW·벤츠"
+    ],
+    "answer_index": 1,
+    "cta_top": false,
+    "seconds_before_end": 5
+  }
+}
+,
+    {
+  "logical_id": "01100101.20250721114256001",
+  "title": "소비쿠폰 신청 첫날, 3시간 만에 415만명 발급, 일부 카드사 앱 한때 먹통",
+  "outlet_name": "경향신문",
+  "reporter": "배재흥",
+  "category": "경제",
+  "trust_score": 91,
+  "published_at": "2025-07-21",
+  "url" : "https://www.khan.co.kr/article/202507211142001",
+  "mux": {
+    "playback_id": "https://stream.mux.com/yHe02Zs7H36BlQnuJ6JbTk8rNelofkzrABzCEmLaNnlY.m3u8",
+    "playback_policy": "public",
+    "duration_seconds": 46
+  },
+  "quiz": {
+    "question": "민생회복 소비쿠폰 1차 신청에서 기초생활수급자가 받는 지원 금액은 얼마인가?",
+    "options": [
+      "30만원",
+      "40만원",
+      "50만원",
+      "60만원"
+    ],
+    "answer_index": 1,
+    "cta_top": false,
+    "seconds_before_end": 5
+  }
+},
+    {
+  "logical_id": "01100901.20250821164323001",
+  "title": "SK 최태원, 빌 게이츠 만나…백신 개발·SMR 협력 방안 짠다",
+  "outlet_name": "경향신문",
+  "reporter": "최선을",
+  "category": "IT_과학",
+  "trust_score": 90,
+  "published_at": "2025-08-21",
+  "url" : "https://www.joongang.co.kr/article/25360706",
+  "mux": {
+    "playback_id": "https://stream.mux.com/8nIbMHXNeRm9W3jmrVIguxrpyqh01sePXUE02Xfqt2iIg.m3u8",
+    "playback_policy": "public",
+    "duration_seconds": 38
+  },
+  "quiz": {
+    "question": "SK그룹이 협력한 기관은?",
+    "options": [
+      "이천",
+      "게이츠",
+      "SK바이오",
+      "AI"
+    ],
+    "answer_index": 1,
+    "cta_top": false,
+    "seconds_before_end": 5
+  }
+}
+
+  ]
+
