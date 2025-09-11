@@ -46,8 +46,8 @@
 ## 📱 스크린샷 (Screenshots)
 
 <p align="center">
-  <img src="figures/fig1.jpg" width="200" alt="로딩 화면">
-  <img src="figures/fig2.jpg" width="200" alt="카테고리 선택">
-  <img src="figures/fig3.jpg" width="200" alt="뉴스 피드">
-  <img src="figures/fig4.jpg" width="200" alt="마이페이지">
+  <img src="figures/fig1.png" width="200" alt="로딩 화면">
+  <img src="figures/fig2.png" width="200" alt="카테고리 선택">
+  <img src="figures/fig3.png" width="200" alt="뉴스 피드">
+  <img src="figures/fig4.png" width="200" alt="마이페이지">
 </p
