@@ -51,3 +51,9 @@
   <img src="figures/fig3.png" width="140" alt="뉴스 피드">
   <img src="figures/fig4.png" width="140" alt="마이페이지">
 </p
+
+<br>
+
+## 🎞 쇼츠 생성 데모 (Demo)
+<p align="center"> <img src="https://github.com/user-attachments/assets/11561878-8725-4df1-a2b6-32d3be364987" width="360" alt="숏카인즈 쇼츠 생성 데모"> <br> </p>
+
