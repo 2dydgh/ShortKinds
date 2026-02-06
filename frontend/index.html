@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Kinds - AI 뉴스 쇼츠 생성기</title>
+    <link rel="stylesheet" href="/static/styles.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">🎬</span>
+                <span class="nav-title">Short Kinds</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">홈</a>
+                <a href="#features" class="nav-link">기능</a>
+                <a href="#about" class="nav-link">소개</a>
+                <button class="nav-btn"
+                    onclick="document.getElementById('generator').scrollIntoView({behavior: 'smooth', block: 'start'})">시작하기</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                AI 기반 콘텐츠 생성
+            </div>
+            <h1 class="hero-title">
+                뉴스를 <span class="gradient-text">쇼츠</span>로<br>
+                단 몇 분 만에
+            </h1>
+            <p class="hero-description">
+                AI가 뉴스를 분석하고 요약하여, 이미지와 음성을 자동 생성합니다.<br>
+                클릭 한 번으로 완성되는 숏폼 콘텐츠 제작의 혁신
+            </p>
+            <div class="hero-cta">
+                <button class="cta-primary"
+                    onclick="document.getElementById('generator').scrollIntoView({behavior: 'smooth'})">
+                    <span>지금 시작하기</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="cta-secondary" id="demoBtn"
+                    onclick="console.log('Button clicked!'); var m = document.getElementById('videoModal'); var v = document.getElementById('demoVideo'); if(m && v) { m.classList.remove('hidden'); v.play(); document.body.style.overflow='hidden'; } else { alert('Modal or video not found!'); }">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path
+                            d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
+                            stroke="currentColor" stroke-width="2" />
+                        <path d="M8 7L13 10L8 13V7Z" fill="currentColor" />
+                    </svg>
+                    <span>데모 보기</span>
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">생성된 쇼츠</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">정확도</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">3분</div>
+                    <div class="stat-label">평균 생성 시간</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">강력한 기능들</h2>
+                <p class="section-subtitle">AI 기술로 콘텐츠 제작을 자동화하세요</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📰</div>
+                    <h3 class="feature-title">자동 뉴스 수집</h3>
+                    <p class="feature-description">최신 뉴스를 자동으로 수집하고 분석합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">AI 요약</h3>
+                    <p class="feature-description">핵심 내용만 추출하여 간결하게 요약합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">이미지 생성</h3>
+                    <p class="feature-description">내용에 맞는 시각 자료를 자동으로 생성합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3 class="feature-title">TTS 음성</h3>
+                    <p class="feature-description">자연스러운 음성으로 변환합니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Short Kinds란?</h2>
+                <p class="section-subtitle">AI 기술로 뉴스를 쇼츠로 만드는 혁신적인 플랫폼</p>
+            </div>
+            <div class="about-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
+                    Short Kinds는 BIG KINDS API를 활용하여 최신 뉴스를 자동으로 수집하고,
+                    AI가 핵심 내용만 추출하여 요약합니다. 그리고 OpenAI DALL-E로 관련 이미지를 생성하고,
+                    TTS 기술로 음성을 만들어 1분 내외의 숏폼 콘텐츠로 완성합니다.
+                </p>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div
+                        style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+                        <h3 style="color: white; font-size: 1.25rem; margin-bottom: 0.5rem;">빠른 처리</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">평균 3분 내 쇼츠 생성</p>
+                    </div>
+                    <div
+                        style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+                        <h3 style="color: white; font-size: 1.25rem; margin-bottom: 0.5rem;">높은 정확도</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">99% 이상의 요약 정확도</p>
+                    </div>
+                    <div
+                        style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+                        <h3 style="color: white; font-size: 1.25rem; margin-bottom: 0.5rem;">완전 자동화</h3>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">클릭 한 번으로 완성</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generator Section -->
+    <section class="generator" id="generator">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">쇼츠 생성하기</h2>
+                <p class="section-subtitle">설정을 입력하고 AI가 작업하는 것을 지켜보세요</p>
+            </div>
+
+            <!-- Input Form Card -->
+            <div class="glass-card form-card">
+                <form id="newsForm" class="form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="date" class="form-label">
+                                <span class="label-icon">📅</span>
+                                기준 날짜
+                            </label>
+                            <input type="text" id="date" name="date" value="2025-08-21" placeholder="YYYY-MM-DD"
+                                class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="maxTopics" class="form-label">
+                                <span class="label-icon">🗂️</span>
+                                토픽 수
+                            </label>
+                            <input type="number" id="maxTopics" name="maxTopics" value="1" min="1" max="10"
+                                class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="perTopicDocs" class="form-label">
+                                <span class="label-icon">📰</span>
+                                토픽당 기사 수
+                            </label>
+                            <input type="number" id="perTopicDocs" name="perTopicDocs" value="1" min="1" max="10"
+                                class="form-input">
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 2L2 7L10 12L18 7L10 2Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2 12L10 17L18 12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            쇼츠 생성 시작
+                        </span>
+                        <span class="btn-loader" style="display: none;">
+                            <span class="spinner"></span>
+                            처리 중...
+                        </span>
+                    </button>
+
+                    <!-- Progress Bar -->
+                    <div id="progressContainer" class="progress-container" style="display: none;">
+                        <div class="progress-header">
+                            <span class="progress-label">생성 진행률</span>
+                            <span class="progress-percentage" id="progressPercentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">처리 중...</p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" style="display: none;">
+                <!-- Tabs -->
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab active" data-tab="summaries">
+                            <span class="tab-icon">📝</span>
+                            <span class="tab-label">요약</span>
+                        </button>
+                        <button class="tab" data-tab="images">
+                            <span class="tab-icon">🖼️</span>
+                            <span class="tab-label">이미지</span>
+                        </button>
+                        <button class="tab" data-tab="audio">
+                            <span class="tab-icon">🎧</span>
+                            <span class="tab-label">TTS</span>
+                        </button>
+                        <button class="tab" data-tab="video">
+                            <span class="tab-icon">🎬</span>
+                            <span class="tab-label">쇼츠</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content active" id="summaries">
+                    <div class="glass-card">
+                        <h3 class="content-title">📝 기사 요약</h3>
+                        <div id="summariesList" class="summaries-list"></div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="images">
+                    <div class="glass-card">
+                        <h3 class="content-title">🖼️ 생성된 이미지</h3>
+                        <div id="imageGallery" class="image-gallery"></div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="audio">
+                    <div class="glass-card">
+                        <h3 class="content-title">🎧 TTS 음성</h3>
+                        <div id="audioList" class="audio-list"></div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="video">
+                    <div class="glass-card">
+                        <h3 class="content-title">🎬 쇼츠 영상</h3>
+                        <div id="videoPlayer" class="video-player"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">🎬</span>
+                <span class="footer-title">Short Kinds</span>
+            </div>
+            <p class="footer-text">AI 기반 뉴스 쇼츠 생성 플랫폼</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">개인정보처리방침</a>
+                <span class="footer-divider">·</span>
+                <a href="#" class="footer-link">이용약관</a>
+                <span class="footer-divider">·</span>
+                <a href="#" class="footer-link">문의하기</a>
+            </div>
+            <p class="footer-copyright">© 2025 Short Kinds. Made with ❤️</p>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal hidden">
+        <div class="video-modal-overlay" onclick="closeVideoModal()"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <video id="demoVideo" controls>
+                <source src="/assets/hyundai_final.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script src="/static/app.js?v=2"></script>
+</body>
+
+</html>
