@@ -15,9 +15,9 @@
 
 <br>
 
-https://github.com/user-attachments/assets/your-video-id-here
+<img src="figures/shortkinds_demo.gif" width="700" alt="ShortKinds Demo">
 
-*실제 생성된 쇼츠 예시 - 현대자동차 관련 뉴스*
+*AI가 뉴스를 쇼츠로 만드는 실제 생성 과정*
 
 </div>
 
@@ -72,9 +72,13 @@ python -m uvicorn backend.main:app --reload --port 8000
 <img src="figures/fig4.png" width="180">
 </div>
 
-### 직접 만들기
+### 완성된 쇼츠 예시
 <div align="center">
-<img src="figures/homepage.png" width="700">
+
+<img src="figures/shorts.gif" width="240" alt="완성된 쇼츠 예시">
+
+*현대자동차 관련 뉴스로 생성된 쇼츠*
+
 </div>
 
 **웹 인터페이스 특징:**

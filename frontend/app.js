@@ -2,13 +2,12 @@
 const API_BASE = window.location.origin;
 
 // ==================== Video Modal Functions (Global) ====================
-// Define these first so they're available for onclick handlers
 window.openVideoModal = function () {
     const modal = document.getElementById('videoModal');
     const video = document.getElementById('demoVideo');
     if (modal && video) {
         modal.classList.remove('hidden');
-        setTimeout(() => video.play(), 100); // Small delay for animation
+        setTimeout(() => video.play(), 100);
         document.body.style.overflow = 'hidden';
     }
 };
@@ -38,9 +37,7 @@ const progressPercentage = document.getElementById('progressPercentage');
 const resultsSection = document.getElementById('resultsSection');
 
 // ==================== Smooth Scroll for Navigation ====================
-// Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
-    // Navigation links
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -52,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle "시작하기" button click in navbar
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -63,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Hero CTA buttons
     document.querySelectorAll('.cta-primary').forEach(btn => {
         btn.addEventListener('click', () => {
             const generatorSection = document.getElementById('generator');
@@ -73,17 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Demo button - open video modal
     const demoBtn = document.getElementById('demoBtn');
     if (demoBtn) {
         demoBtn.addEventListener('click', openVideoModal);
     }
 
-    // Close modal on ESC key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeVideoModal();
-        }
+        if (e.key === 'Escape') closeVideoModal();
     });
 
     // Scroll animations
@@ -93,6 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
+    });
+
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabName = tab.getAttribute('data-tab');
+            switchTab(tabName);
+        });
     });
 });
 
@@ -157,14 +156,18 @@ if (newsForm) {
         const formData = new FormData(newsForm);
         const data = {
             date: formData.get('date'),
-            max_topics: parseInt(formData.get('max_topics')),
-            per_topic_docs: parseInt(formData.get('per_topic_docs'))
+            max_topics: parseInt(formData.get('maxTopics')),
+            per_topic_docs: parseInt(formData.get('perTopicDocs'))
         };
 
         currentDate = data.date;
 
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoader = submitBtn.querySelector('.btn-loader');
         submitBtn.disabled = true;
-        submitBtn.textContent = '처리 중...';
+        if (btnText) btnText.style.display = 'none';
+        if (btnLoader) btnLoader.style.display = 'inline-flex';
+
         progressContainer.style.display = 'block';
         resultsSection.style.display = 'none';
 
@@ -187,7 +190,8 @@ if (newsForm) {
             console.error('Error:', error);
             showNotification('오류가 발생했습니다: ' + error.message, 'error');
             submitBtn.disabled = false;
-            submitBtn.textContent = '쇼츠 생성 시작';
+            if (btnText) btnText.style.display = 'inline-flex';
+            if (btnLoader) btnLoader.style.display = 'none';
             progressContainer.style.display = 'none';
         }
     });
@@ -206,12 +210,18 @@ async function pollTaskStatus() {
         if (status.status === 'completed') {
             showNotification('쇼츠 생성이 완료되었습니다!', 'info');
             await loadResults();
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
             submitBtn.disabled = false;
-            submitBtn.textContent = '쇼츠 생성 시작';
+            if (btnText) btnText.style.display = 'inline-flex';
+            if (btnLoader) btnLoader.style.display = 'none';
         } else if (status.status === 'failed') {
             showNotification('쇼츠 생성에 실패했습니다.', 'error');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
             submitBtn.disabled = false;
-            submitBtn.textContent = '쇼츠 생성 시작';
+            if (btnText) btnText.style.display = 'inline-flex';
+            if (btnLoader) btnLoader.style.display = 'none';
             progressContainer.style.display = 'none';
         } else {
             setTimeout(pollTaskStatus, 2000);
@@ -224,9 +234,9 @@ async function pollTaskStatus() {
 
 // ==================== Progress Update ====================
 function updateProgress(percent, message) {
-    progressFill.style.width = `${percent}%`;
-    progressPercentage.textContent = `${Math.round(percent)}%`;
-    progressText.textContent = message;
+    if (progressFill) progressFill.style.width = `${percent}%`;
+    if (progressPercentage) progressPercentage.textContent = `${Math.round(percent)}%`;
+    if (progressText) progressText.textContent = message;
 }
 
 // ==================== Load Results ====================
@@ -241,6 +251,10 @@ async function loadResults() {
         resultsSection.style.display = 'block';
         progressContainer.style.display = 'none';
 
+        setTimeout(() => {
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+
     } catch (error) {
         console.error('Results load error:', error);
         showNotification('결과를 불러오는데 실패했습니다.', 'error');
@@ -249,58 +263,66 @@ async function loadResults() {
 
 // ==================== Display Results ====================
 function displayResults(summaries) {
-    const summariesTab = document.getElementById('summariesTab');
-    const imagesTab = document.getElementById('imagesTab');
-    const ttsTab = document.getElementById('ttsTab');
-    const videosTab = document.getElementById('videosTab');
+    const summariesList = document.getElementById('summariesList');
+    const imageGallery = document.getElementById('imageGallery');
+    const audioList = document.getElementById('audioList');
+    const videoPlayer = document.getElementById('videoPlayer');
 
-    if (!summariesTab) return;
+    if (summariesList) {
+        summariesList.innerHTML = summaries.length > 0
+            ? summaries.map((item, idx) => createSummaryCard(item, idx)).join('')
+            : '<p class="no-results">생성된 요약이 없습니다.</p>';
+    }
 
-    summariesTab.innerHTML = summaries.length > 0
-        ? summaries.map((item, idx) => createSummaryCard(item, idx)).join('')
-        : '<p class="no-results">생성된 요약이 없습니다.</p>';
+    if (imageGallery) {
+        const withImages = summaries.filter(s => s.image_path);
+        imageGallery.innerHTML = withImages.length > 0
+            ? withImages.map((item, idx) => createImageCard(item, idx)).join('')
+            : '<p class="no-results">생성된 이미지가 없습니다.</p>';
+    }
 
-    imagesTab.innerHTML = summaries.filter(s => s.image_path).length > 0
-        ? summaries.filter(s => s.image_path).map((item, idx) => createImageCard(item, idx)).join('')
-        : '<p class="no-results">생성된 이미지가 없습니다.</p>';
+    if (audioList) {
+        const withAudio = summaries.filter(s => s.tts_path);
+        audioList.innerHTML = withAudio.length > 0
+            ? withAudio.map((item, idx) => createTTSCard(item, idx)).join('')
+            : '<p class="no-results">생성된 TTS가 없습니다.</p>';
+    }
 
-    ttsTab.innerHTML = summaries.filter(s => s.tts_path).length > 0
-        ? summaries.filter(s => s.tts_path).map((item, idx) => createTTSCard(item, idx)).join('')
-        : '<p class="no-results">생성된 TTS가 없습니다.</p>';
-
-    videosTab.innerHTML = summaries.filter(s => s.video_path).length > 0
-        ? summaries.filter(s => s.video_path).map((item, idx) => createVideoCard(item, idx)).join('')
-        : '<p class="no-results">생성된 비디오가 없습니다.</p>';
+    if (videoPlayer) {
+        const withVideo = summaries.filter(s => s.video_path);
+        videoPlayer.innerHTML = withVideo.length > 0
+            ? withVideo.map((item, idx) => createVideoCard(item, idx)).join('')
+            : '<p class="no-results">생성된 영상이 없습니다.</p>';
+    }
 }
 
 // ==================== Create Cards ====================
 function createSummaryCard(item, idx) {
     return `
-        <div class="result-card">
-            <div class="result-header">
-                <h3 class="result-title">${item.title || '제목 없음'}</h3>
-                <span class="result-badge">${item.provider || '출처 미상'}</span>
+        <div class="summary-item">
+            <div class="summary-meta">
+                <span class="badge">${item.provider || '출처 미상'}</span>
             </div>
-            <p class="result-summary">${item.summary || '요약 없음'}</p>
-            ${item.url ? `<a href="${item.url}" target="_blank" class="result-link">원문 보기 →</a>` : ''}
+            <div class="summary-title">${item.title || '제목 없음'}</div>
+            <div class="summary-text"><p>${item.summary || '요약 없음'}</p></div>
+            ${item.url ? `<a href="${item.url}" target="_blank" class="result-link" style="display:inline-block;margin-top:0.75rem;color:#6366f1;font-weight:600;text-decoration:none;">원문 보기 →</a>` : ''}
         </div>
     `;
 }
 
 function createImageCard(item, idx) {
     return `
-        <div class="result-card">
-            <h3 class="result-title">${item.title || '제목 없음'}</h3>
-            <img src="/outputs/${item.image_path}" alt="${item.title}" class="result-image">
+        <div class="image-item">
+            <img src="/outputs/${item.image_path}" alt="${item.title}" loading="lazy">
         </div>
     `;
 }
 
 function createTTSCard(item, idx) {
     return `
-        <div class="result-card">
-            <h3 class="result-title">${item.title || '제목 없음'}</h3>
-            <audio controls class="result-audio">
+        <div class="audio-item">
+            <strong>${item.title || '제목 없음'}</strong>
+            <audio controls style="width:100%; margin-top:0.5rem;">
                 <source src="/outputs/${item.tts_path}" type="audio/mpeg">
             </audio>
         </div>
@@ -309,9 +331,9 @@ function createTTSCard(item, idx) {
 
 function createVideoCard(item, idx) {
     return `
-        <div class="result-card">
-            <h3 class="result-title">${item.title || '제목 없음'}</h3>
-            <video controls class="result-video">
+        <div style="text-align:center;">
+            <p style="color: var(--muted); margin-bottom: 1rem; font-weight:600;">${item.title || '제목 없음'}</p>
+            <video controls style="width:100%; max-width:420px; border-radius: var(--radius-xl); box-shadow: var(--shadow-2xl);">
                 <source src="/outputs/${item.video_path}" type="video/mp4">
             </video>
         </div>
@@ -320,11 +342,11 @@ function createVideoCard(item, idx) {
 
 // ==================== Tab Switching ====================
 function switchTab(tabName) {
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-    const activeBtn = document.querySelector(`[onclick="switchTab('${tabName}')"]`);
-    const activeContent = document.getElementById(`${tabName}Tab`);
+    const activeBtn = document.querySelector(`.tab[data-tab="${tabName}"]`);
+    const activeContent = document.getElementById(tabName);
 
     if (activeBtn) activeBtn.classList.add('active');
     if (activeContent) activeContent.classList.add('active');
